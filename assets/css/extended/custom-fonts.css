@@ -1,0 +1,140 @@
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-Thin.ttf.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-ThinItalic.ttf.woff2") format("woff2");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-ExtraLight.ttf.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-ExtraLightItalic.ttf.woff2") format("woff2");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-Light.ttf.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-LightItalic.ttf.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-Regular.ttf.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-Italic.ttf.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-Medium.ttf.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-MediumItalic.ttf.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-SemiBold.ttf.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-SemiBoldItalic.ttf.woff2") format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-Bold.ttf.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-BoldItalic.ttf.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-ExtraBold.ttf.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NL";
+  src: url("/fonts/maple-mono/MapleMonoNL-ExtraBoldItalic.ttf.woff2") format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Use Maple Mono NL for source code only */
+code,
+pre,
+kbd,
+samp,
+.highlight code,
+.highlight pre,
+.chroma code {
+  font-family: "Maple Mono NL", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-feature-settings: "liga" 0, "calt" 0;
+  font-variant-ligatures: none;
+}

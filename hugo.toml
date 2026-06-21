@@ -1,0 +1,56 @@
+baseURL = "https://blog.canhdinh.com/"
+locale = "en-us"
+title = "Canh Dinh"
+theme = "PaperMod"
+
+[pagination]
+pagerSize = 10
+
+[params]
+env = "production"
+description = "Notes on DevOps, cloud infrastructure, automation, CI/CD, Terraform, Kubernetes, and software delivery."
+author = "Canh Dinh"
+
+defaultTheme = "auto"
+disableThemeToggle = false
+
+ShowReadingTime = true
+ShowShareButtons = false
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+ShowToc = true
+TocOpen = false
+UseHugoToc = true
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/vancanhuit"
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 10
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "archives"
+name = "Archives"
+url = "/archives/"
+weight = 30
+
+[markup]
+[markup.highlight]
+codeFences = true
+guessSyntax = true
+lineNos = true
+lineNumbersInTable = true
+noClasses = false

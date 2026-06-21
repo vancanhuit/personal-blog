@@ -23,10 +23,10 @@ git submodule update --init --recursive && hugo --gc --minify
 ```
 
 ```bash
-npx wrangler deploy --assets=public --name personal-blog --compatibility-date 2026-06-21
+npx wrangler deploy
 ```
 
-No `wrangler.jsonc` file is required in the repository for this setup.
+The Workers deployment options live in a `wrangler.jsonc` file committed to the repository (see below).
 
 ## Why Hugo?
 
@@ -428,18 +428,25 @@ The `git submodule update --init --recursive` part is important because PaperMod
 ### Deploy command
 
 ```bash
-npx wrangler deploy --assets=public --name personal-blog --compatibility-date 2026-06-21
+npx wrangler deploy
 ```
 
 This deploys the generated `public/` directory as static assets.
 
-In this setup, I do not need a `wrangler.jsonc` file in the repository because the deploy command provides the required Workers deployment options directly:
+The deploy command stays minimal because the Workers options are stored in a `wrangler.jsonc` file at the root of the repository:
 
-```bash
---assets=public
---name personal-blog
---compatibility-date 2026-06-21
+```jsonc
+{
+  "name": "personal-blog",
+  "compatibility_date": "2026-06-21",
+  "assets": {
+    "directory": "public",
+  },
+  "preview_urls": false
+}
 ```
+
+This file tells Wrangler the Worker name, the compatibility date, and the directory (`public/`) to serve as static assets.
 
 ## Environment variables
 
@@ -530,19 +537,28 @@ If fonts are cached aggressively, rename the font folder or font files and updat
 
 ### Deployment fails after successful build
 
-If the log shows that Hugo built successfully but deployment failed, check the deploy command.
+If the log shows that Hugo built successfully but deployment failed, check the deploy command and the `wrangler.jsonc` file.
 
 For this setup, use:
 
 ```bash
-npx wrangler deploy --assets=public --name personal-blog --compatibility-date 2026-06-21
-```
-
-not just:
-
-```bash
 npx wrangler deploy
 ```
+
+and make sure `wrangler.jsonc` points the assets directory at the Hugo output:
+
+```jsonc
+{
+  "name": "personal-blog",
+  "compatibility_date": "2026-06-21",
+  "assets": {
+    "directory": "public",
+  },
+  "preview_urls": false
+}
+```
+
+If `wrangler.jsonc` is missing or the `assets.directory` is wrong, Wrangler has nothing to upload and the deploy fails even though the build succeeded.
 
 ## Useful links
 
@@ -567,7 +583,7 @@ Cloudflare build command:
   git submodule update --init --recursive && hugo --gc --minify
 
 Cloudflare deploy command:
-  npx wrangler deploy --assets=public --name personal-blog --compatibility-date 2026-06-21
+  npx wrangler deploy
 
-No wrangler.jsonc required
+Workers options stored in wrangler.jsonc
 ```

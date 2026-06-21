@@ -1,0 +1,8 @@
+{
+  "name": "personal-blog",
+  "compatibility_date": "2026-06-21",
+  "assets": {
+    "directory": "public",
+  },
+  "preview_urls": false
+}

@@ -86,8 +86,8 @@ Example:
 
 ```ini
 [submodule "themes/PaperMod"]
- path = themes/PaperMod
- url = https://github.com/adityatelange/hugo-PaperMod
+  path = themes/PaperMod
+  url = https://github.com/adityatelange/hugo-PaperMod
 ```
 
 ## Configure Hugo
@@ -278,7 +278,7 @@ hugo server -D --disableFastRender
 
 ## Self-host fonts
 
-I use Maple Mono NL for code blocks.
+I use [Maple Mono NL](https://github.com/subframe7536/maple-font) for code blocks.
 
 Font files are stored under:
 

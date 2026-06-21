@@ -8,7 +8,7 @@ pagerSize = 10
 
 [params]
 env = "production"
-description = "Notes on DevOps, cloud infrastructure, automation, CI/CD, Terraform, Kubernetes, and software delivery."
+description = "Notes on DevOps practices, self-hosting and software delivery."
 author = "Canh Dinh"
 
 defaultTheme = "auto"

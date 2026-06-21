@@ -60,10 +60,10 @@ For a technical blog, PaperMod is a practical choice because it stays out of the
 
 ## Create the Hugo site
 
-Create a new Hugo project:
+Create a new Hugo project. By default Hugo generates a TOML config file, so pass `--format yaml` to get `hugo.yaml` instead:
 
 ```bash
-hugo new site personal-blog
+hugo new site personal-blog --format yaml
 cd personal-blog
 git init
 ```
@@ -92,75 +92,124 @@ Example:
 
 ## Configure Hugo
 
-Here is a simplified `hugo.toml` configuration:
+Here is a simplified `hugo.yaml` configuration:
 
-```toml
-baseURL = "https://blog.canhdinh.com/"
-locale = "en-us"
-title = "Canh Dinh"
-theme = "PaperMod"
+```yaml
+baseURL: "https://blog.canhdinh.com/"
+locale: "en-us"
+title: "Canh Dinh"
+theme: "PaperMod"
 
-[pagination]
-pagerSize = 10
+pagination:
+  pagerSize: 10
 
-[params]
-env = "production"
-description = "Notes on DevOps practices, self-hosting and software delivery."
-author = "Canh Dinh"
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
-defaultTheme = "auto"
-disableThemeToggle = false
+params:
+  env: "production"
+  description: "Notes on DevOps practices, self-hosting and software delivery."
+  author: "Canh Dinh"
+  mainSections:
+    - posts
+  homeInfoParams:
+    Title: "Hi there 👋"
+    Content: >
+      Welcome to my blog.
+  defaultTheme: "auto"
+  disableThemeToggle: false
+  ShowReadingTime: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  ShowToc: true
+  TocOpen: false
+  UseHugoToc: true
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/vancanhuit"
 
-ShowReadingTime = true
-ShowShareButtons = false
-ShowPostNavLinks = true
-ShowBreadCrumbs = true
-ShowCodeCopyButtons = true
-ShowWordCount = true
-ShowRssButtonInSectionTermList = true
-ShowToc = true
-TocOpen = false
-UseHugoToc = true
+menu:
+  main:
+    - identifier: "tags"
+      name: "Tags"
+      url: "/tags/"
+      weight: 20
+    - identifier: "archives"
+      name: "Archives"
+      url: "/archives/"
+      weight: 30
+    - identifier: "search"
+      name: "Search"
+      url: "/search/"
+      weight: 40
 
-[[params.socialIcons]]
-name = "github"
-url = "https://github.com/vancanhuit"
-
-[[menu.main]]
-identifier = "posts"
-name = "Posts"
-url = "/posts/"
-weight = 10
-
-[[menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 20
-
-[[menu.main]]
-identifier = "archives"
-name = "Archives"
-url = "/archives/"
-weight = 30
-
-[markup]
-[markup.highlight]
-codeFences = true
-guessSyntax = true
-lineNos = true
-lineNumbersInTable = true
-noClasses = false
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    lineNumbersInTable: true
+    noClasses: false
 ```
 
 The most important values are:
 
-```toml
-baseURL = "https://blog.canhdinh.com/"
-theme = "PaperMod"
+```yaml
+baseURL: "https://blog.canhdinh.com/"
+theme: "PaperMod"
 ```
 
 The `baseURL` should match the production domain.
+
+A few PaperMod-specific options are worth highlighting:
+
+* `mainSections: [posts]` makes the home page (`/`) list posts from `content/posts/`, so the landing page acts as the posts archive.
+* `homeInfoParams` renders an intro block (title plus content) at the top of the home page, followed by the post list.
+* `outputs.home` adds a `JSON` output, which generates the search index used by the search page.
+
+## Home, archives, and search pages
+
+PaperMod renders the post list on the home page automatically, but the **Archives** and **Search** pages each need a content file that selects the right layout. Without them, the menu links return `404`.
+
+Create the archives page:
+
+```bash
+hugo new content archives.md
+```
+
+```markdown
+---
+title: "Archives"
+layout: "archives"
+url: "/archives/"
+summary: "archives"
+---
+```
+
+Create the search page:
+
+```bash
+hugo new content search.md
+```
+
+```markdown
+---
+title: "Search"
+layout: "search"
+url: "/search/"
+summary: "search"
+placeholder: "Search posts..."
+---
+```
+
+The search page relies on the `JSON` home output configured above. PaperMod ships with [Fuse.js](https://www.fusejs.io/) and performs fuzzy, client-side search over that index, so no server-side component is required.
 
 ## Add a blog post
 

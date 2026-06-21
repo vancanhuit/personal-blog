@@ -431,8 +431,6 @@ The `git submodule update --init --recursive` part is important because PaperMod
 npx wrangler deploy
 ```
 
-This deploys the generated `public/` directory as static assets.
-
 The deploy command stays minimal because the Workers options are stored in a `wrangler.jsonc` file at the root of the repository:
 
 ```jsonc
@@ -442,11 +440,17 @@ The deploy command stays minimal because the Workers options are stored in a `wr
   "assets": {
     "directory": "public",
   },
-  "preview_urls": false
+  "preview_urls": false,
+  "workers_dev": false
 }
 ```
 
 This file tells Wrangler the Worker name, the compatibility date, and the directory (`public/`) to serve as static assets.
+
+Two settings disable Cloudflare's automatic preview endpoints, since I only want the production domain to serve the site:
+
+* `"preview_urls": false` turns off the per-version preview URLs Cloudflare would otherwise generate for each deployment.
+* `"workers_dev": false` disables the default `*.workers.dev` subdomain, so the Worker is reachable only through my custom domain.
 
 ## Environment variables
 
@@ -554,7 +558,8 @@ and make sure `wrangler.jsonc` points the assets directory at the Hugo output:
   "assets": {
     "directory": "public",
   },
-  "preview_urls": false
+  "preview_urls": false,
+  "workers_dev": false
 }
 ```
 

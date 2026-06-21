@@ -278,11 +278,15 @@ hugo server -D --disableFastRender
 
 ## Self-host fonts
 
-I use [Maple Mono NL](https://github.com/subframe7536/maple-font) for code blocks.
+I self-host two fonts so the site does not depend on a third-party font CDN:
+
+* [Inter](https://github.com/rsms/inter) for body and UI text.
+* [Maple Mono NL](https://github.com/subframe7536/maple-font) for code blocks.
 
 Font files are stored under:
 
 ```text
+static/fonts/inter/
 static/fonts/maple-mono/
 ```
 
@@ -335,6 +339,63 @@ samp,
 
 I disable ligatures because I prefer code to display exactly as typed.
 
+For body text, I load Inter as a variable font (two `woff2` files cover every weight) and set it as the base font:
+
+```css
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter/inter-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+```
+
+Because the extended stylesheet loads after the theme's CSS, this `body` rule overrides PaperMod's default font stack.
+
+## Custom styling
+
+PaperMod automatically bundles any CSS placed in `assets/css/extended/`, loaded after the theme styles. I use a `custom.css` file there to make the content stand out and improve reading comfort:
+
+```text
+assets/css/extended/custom.css
+```
+
+The main tweaks are:
+
+* An accent color for in-content links, with the default underline removed and an underline that animates in on hover.
+* Styled blockquotes with an accent border, a tinted background, and a decorative quote mark.
+* Subtle borders on inline code, rounded tables with a shaded header row, and a slim centered horizontal rule.
+* A softer light palette and brighter dark-mode text, plus a larger line height for more comfortable reading.
+
+All colors are driven by CSS variables (including PaperMod's own `--theme`, `--content`, and `--border`) and an `--accent` variable defined separately for light and `.dark` modes, so the styling adapts to both themes:
+
+```css
+:root {
+  --accent: #2563eb;
+}
+
+.dark {
+  --accent: #6ea8fe;
+}
+
+.post-content a:not(.anchor) {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.post-content blockquote {
+  border-inline-start: 0.25rem solid var(--accent);
+  background: var(--quote-bg);
+}
+```
+
+PaperMod underlines content links through `.md-content a:not(.anchor)`. Because that selector has a higher specificity than a plain `.post-content a`, the override matches it with `.post-content a:not(.anchor)` so the default underline is actually removed.
+
 ## Push to GitHub
 
 Commit and push the project:
@@ -345,12 +406,6 @@ git commit -m "Initial Hugo blog with PaperMod"
 git branch -M main
 git remote add origin https://github.com/vancanhuit/personal-blog.git
 git push -u origin main
-```
-
-My repository is available here:
-
-```text
-https://github.com/vancanhuit/personal-blog
 ```
 
 ## Configure Cloudflare deployment

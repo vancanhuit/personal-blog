@@ -57,7 +57,7 @@
 
 
 /* Hyperlinks inside post content. */
-.post-content a {
+.post-content a:not(.anchor) {
     color: var(--accent);
     text-decoration: none;
     background-image: linear-gradient(var(--accent), var(--accent));
@@ -67,7 +67,7 @@
     transition: background-size 0.25s ease, color 0.2s ease;
 }
 
-.post-content a:hover {
+.post-content a:not(.anchor):hover {
     color: var(--accent-hover);
     background-size: 100% 1.5px;
 }

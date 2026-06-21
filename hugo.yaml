@@ -2,6 +2,8 @@ baseURL: "https://blog.canhdinh.com/"
 locale: "en-us"
 title: "Canh Dinh"
 theme: "PaperMod"
+enableRobotsTXT: true
+enableEmoji: true
 
 pagination:
   pagerSize: 10
@@ -16,6 +18,11 @@ params:
   env: "production"
   description: "Notes on DevOps practices, self-hosting and software delivery."
   author: "Canh Dinh"
+  keywords:
+    - DevOps
+    - self-hosting
+    - software delivery
+  ShowFullTextinRSS: true
   mainSections:
     - posts
   homeInfoParams:
@@ -37,6 +44,8 @@ params:
   socialIcons:
     - name: "github"
       url: "https://github.com/vancanhuit"
+    - name: "rss"
+      url: "/index.xml"
 
 menu:
   main:

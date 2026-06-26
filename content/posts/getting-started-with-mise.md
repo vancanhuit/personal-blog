@@ -334,6 +334,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"runtime"
 )
 
 func main() {
@@ -341,7 +342,7 @@ func main() {
 	port := envOr("APP_PORT", "8080")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if _, err := fmt.Fprintf(w, "Hello from %q, served by Go %s\n", name, runtimeVersion()); err != nil {
+		if _, err := fmt.Fprintf(w, "Hello from %q, served by Go %s\n", name, runtime.Version()); err != nil {
 			log.Printf("write response: %v", err)
 		}
 	})
@@ -360,18 +361,6 @@ func envOr(key, fallback string) string {
 ```
 
 Note that the handler checks the error returned by `fmt.Fprintf`. This isn't just good practice — `golangci-lint`'s default `errcheck` linter would otherwise flag the unchecked return value and the `ci` task would fail at the lint step.
-
-Create `version.go`:
-
-```go
-package main
-
-import "runtime"
-
-func runtimeVersion() string {
-	return runtime.Version()
-}
-```
 
 ### 6. Run it
 
